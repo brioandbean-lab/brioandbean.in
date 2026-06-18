@@ -1,55 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Brio & Bean</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Brio & Bean | The Coffee Trail</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-body{
+
+*{
 margin:0;
-font-family:Arial,sans-serif;
-background:#111;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0f0f0f;
 color:white;
+font-family:'Montserrat',sans-serif;
+line-height:1.7;
+}
+
+section{
+padding:90px 8%;
+}
+
+h1,h2,h3{
+font-family:'Cormorant Garamond',serif;
 }
 
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
 url('hero.coffee.png');
 background-size:cover;
 background-position:center;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:20px;
+}
+
+.hero-content{
+max-width:900px;
 }
 
 .logo{
-max-width:500px;
-width:90%;
-margin-bottom:30px;
+width:500px;
+max-width:90%;
+margin-bottom:25px;
 }
 
-h1{
-font-size:70px;
-margin:0;
+.hero h1{
+font-size:5rem;
+margin-bottom:15px;
 }
 
-p{
-font-size:24px;
-max-width:800px;
+.hero p{
+font-size:1.2rem;
+max-width:700px;
+margin:auto;
+opacity:.9;
 }
 
 .btn{
 display:inline-block;
+margin-top:30px;
 padding:15px 35px;
-background:#b77939;
+background:#b97a3d;
 color:white;
 text-decoration:none;
-border-radius:30px;
-margin-top:20px;
+border-radius:40px;
+font-weight:600;
+transition:.3s;
 }
+
+.btn:hover{
+background:#d3914d;
+transform:translateY(-2px);
+}
+
+.about{
+background:#151515;
+text-align:center;
+}
+
+.about h2{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.about p{
+max-width:850px;
+margin:auto;
+font-size:1.1rem;
+color:#d5d5d5;
+}
+
+.section-title{
+text-align:center;
+font-size:3rem;
+margin-bottom:50px;
+}
+
+.origins-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#1b1b1b;
+padding:35px;
+border-radius:15px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+font-size:2rem;
+margin-bottom:10px;
+color:#d3914d;
+}
+
+.coffee-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.coffee{
+background:#181818;
+padding:30px;
+border-radius:15px;
+text-align:center;
+}
+
+.coffee h3{
+font-size:1.8rem;
+margin-bottom:10px;
+color:#d3914d;
+}
+
+.coming{
+background:#141414;
+text-align:center;
+}
+
+.coming h2{
+font-size:3rem;
+margin-bottom:15px;
+}
+
+.instagram{
+text-align:center;
+background:#111;
+}
+
+.instagram a{
+color:#d3914d;
+font-size:1.3rem;
+text-decoration:none;
+}
+
+.contact{
+background:#151515;
+text-align:center;
+}
+
+.contact p{
+margin:10px 0;
+}
+
+footer{
+background:black;
+padding:25px;
+text-align:center;
+font-size:.9rem;
+color:#aaa;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:3rem;
+}
+
+.logo{
+width:300px;
+}
+
+.section-title{
+font-size:2.3rem;
+}
+
+.about h2,
+.coming h2{
+font-size:2.3rem;
+}
+
+}
+
 </style>
 </head>
 
@@ -57,28 +215,154 @@ margin-top:20px;
 
 <section class="hero">
 
+<div class="hero-content">
+
 <img src="Untitled design (3).png" class="logo">
 
 <h1>Follow The Coffee Trail</h1>
 
 <p>
 From India's finest coffee origins to your cup.
-Every bean has a story.
+Every bean carries a story of place, people and craft.
 </p>
 
-<a href="#about" class="btn">Explore</a>
+<a href="#about" class="btn">Explore The Journey</a>
+
+</div>
 
 </section>
 
-<section id="about" style="padding:80px 20px;text-align:center;">
-<h2>Brio & Bean</h2>
+<section class="about" id="about">
+
+<h2>About Brio & Bean</h2>
 
 <p>
-A specialty coffee brand inspired by India's coffee estates,
-travellers, stories and craftsmanship.
+Brio & Bean is inspired by India's rich coffee heritage and the spirit of travel.
+We believe every coffee-growing region has its own unique story. Through carefully sourced beans and thoughtful roasting, we aim to bring those stories to your cup.
 </p>
 
 </section>
+
+<section>
+
+<h2 class="section-title">Coffee Origins</h2>
+
+<div class="origins-grid">
+
+<div class="card">
+<h3>Coorg</h3>
+<p>
+Lush estates, misty hills and balanced coffees with chocolate notes.
+</p>
+</div>
+
+<div class="card">
+<h3>Chikmagalur</h3>
+<p>
+The birthplace of Indian coffee and home to elegant specialty lots.
+</p>
+</div>
+
+<div class="card">
+<h3>Araku Valley</h3>
+<p>
+Distinctive coffees grown by tribal communities in Eastern India.
+</p>
+</div>
+
+<div class="card">
+<h3>Wayanad</h3>
+<p>
+Forest-grown coffees known for their depth and complexity.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Featured Coffees</h2>
+
+<div class="coffee-grid">
+
+<div class="coffee">
+<h3>Estate Espresso</h3>
+<p>
+Bold, rich and crafted for espresso lovers.
+</p>
+</div>
+
+<div class="coffee">
+<h3>Traveller's Blend</h3>
+<p>
+A smooth everyday coffee inspired by journeys across India.
+</p>
+</div>
+
+<div class="coffee">
+<h3>Monsoon Malabar</h3>
+<p>
+Low acidity, earthy character and a legendary Indian profile.
+</p>
+</div>
+
+<div class="coffee">
+<h3>Coorg Dark Roast</h3>
+<p>
+Deep chocolate notes with a comforting finish.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="coming">
+
+<h2>Coming Soon To Karnataka ☕</h2>
+
+<p>
+A specialty coffee experience built around craftsmanship,
+community and the stories behind every bean.
+</p>
+
+</section>
+
+<section class="instagram">
+
+<h2 class="section-title">Follow The Journey</h2>
+
+<p>
+Stay connected as Brio & Bean grows.
+</p>
+
+<br>
+
+<a href="https://instagram.com/brioandbean" target="_blank">
+@brioandbean
+</a>
+
+</section>
+
+<section class="contact">
+
+<h2 class="section-title">Contact</h2>
+
+<p>Instagram: @brioandbean</p>
+
+<p>Website: brioandbean.in</p>
+
+<p>Karnataka, India</p>
+
+</section>
+
+<footer>
+
+© 2026 Brio & Bean • The Coffee Trail
+
+</footer>
 
 </body>
 </html>
