@@ -4,31 +4,81 @@
 <title>Brio & Bean</title>
 <style>
 body{
+margin:0;
 font-family:Arial,sans-serif;
 background:#111;
 color:white;
+}
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url('hero.coffee.png');
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 text-align:center;
-padding:50px;
+padding:20px;
 }
+
+.logo{
+max-width:500px;
+width:90%;
+margin-bottom:30px;
+}
+
 h1{
-font-size:50px;
+font-size:70px;
+margin:0;
 }
+
 p{
-font-size:20px;
+font-size:24px;
+max-width:800px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:#b77939;
+color:white;
+text-decoration:none;
+border-radius:30px;
+margin-top:20px;
 }
 </style>
 </head>
+
 <body>
 
-<h1>BRIO & BEAN</h1>
+<section class="hero">
 
-<p>The Coffee Trail</p>
+<img src="Untitled design (3).png" class="logo">
 
-<p>Discover specialty coffee inspired by India's coffee origins and the spirit of travel.</p>
+<h1>Follow The Coffee Trail</h1>
 
-<p>Coming Soon To Karnataka ☕</p>
+<p>
+From India's finest coffee origins to your cup.
+Every bean has a story.
+</p>
 
-<p>Instagram: @brioandbean</p>
+<a href="#about" class="btn">Explore</a>
+
+</section>
+
+<section id="about" style="padding:80px 20px;text-align:center;">
+<h2>Brio & Bean</h2>
+
+<p>
+A specialty coffee brand inspired by India's coffee estates,
+travellers, stories and craftsmanship.
+</p>
+
+</section>
 
 </body>
 </html>
