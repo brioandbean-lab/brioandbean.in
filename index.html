@@ -56,14 +56,10 @@ align-items:center;
 gap:18px;
 }
 
-.brand img:first-child{
-height:58px;
+.brand img{
+height:95px;
 width:auto;
-}
-
-.brand img:last-child{
-height:78px;
-width:auto;
+display:block;
 }
 
 nav ul{
@@ -194,30 +190,26 @@ font-size:1.05rem;
 color:#d8d8d8;
 }
 
-/* PLANT */
 
-.plant{
-background:#111;
-text-align:center;
-}
-
-.plant img{
-max-width:900px;
-width:100%;
-opacity:.95;
-}
-
-/* MAP */
+/* COFFEE TRAIL */
 
 .map{
-background:#0d0d0d;
+background:
+linear-gradient(rgba(0,0,0,.88),rgba(0,0,0,.88)),
+url('coffee-trail-map.png');
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 text-align:center;
 }
 
-.map img{
-width:100%;
-max-width:1100px;
-border-radius:18px;
+.map p{
+max-width:900px;
+margin:auto;
+font-size:1.15rem;
+line-height:2;
+color:#d6d6d6;
 }
 
 /* FUTURE TRAILS */
@@ -277,12 +269,8 @@ color:#999;
 grid-template-columns:1fr;
 }
 
-.brand img:first-child{
-height:42px;
-}
-
-.brand img:last-child{
-height:52px;
+.brand img{
+height:60px;
 }
 
 nav ul{
@@ -373,7 +361,7 @@ Our journey begins in Karnataka and will continue across India's most celebrated
 <p>
 The first stop on The Coffee Trail.
 
-A balanced specialty coffee crafted for everyday brewing, featuring rich chocolate notes, gentle sweetness and a smooth finish.
+Crafted from carefully selected Karnataka-grown specialty coffee, Trail 01 is designed as an approachable everyday cup with balance, character and consistency.
 
 Available as whole beans or freshly ground coffee.
 
@@ -386,15 +374,7 @@ Origin: Karnataka, India.
 
 </section>
 
-<section class="plant">
 
-<h2 class="section-title">From Plant To Cup</h2>
-
-<div class="divider"></div>
-
-<img src="coffee-plant.png" alt="">
-
-</section>
 
 <section class="map" id="trail">
 
@@ -402,7 +382,22 @@ Origin: Karnataka, India.
 
 <div class="divider"></div>
 
-<img src="coffee-trail-map.png" alt="">
+<p>
+Brio & Bean was created with a simple idea:
+to travel across India's celebrated coffee-growing regions and bring each origin's story to your cup.
+</p>
+
+<br><br>
+
+<p>
+Every coffee we release becomes a new stop on the trail.
+</p>
+
+<br><br>
+
+<p>
+Our journey begins in Karnataka, with many more origins waiting ahead.
+</p>
 
 </section>
 
@@ -416,22 +411,22 @@ Origin: Karnataka, India.
 
 <div class="card">
 <h3>Trail 02</h3>
-<p>Coming Soon</p>
+<p>Future Origin</p>
 </div>
 
 <div class="card">
 <h3>Trail 03</h3>
-<p>Coming Soon</p>
+<p>Future Origin</p>
 </div>
 
 <div class="card">
 <h3>Trail 04</h3>
-<p>Coming Soon</p>
+<p>Future Origin</p>
 </div>
 
 <div class="card">
 <h3>Trail 05</h3>
-<p>Coming Soon</p>
+<p>Future Origin</p>
 </div>
 
 </div>
