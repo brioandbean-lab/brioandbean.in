@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,10 +19,9 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#0f0f0f;
+background:#0b0b0b;
 color:white;
 font-family:'Montserrat',sans-serif;
-line-height:1.8;
 overflow-x:hidden;
 }
 
@@ -40,39 +40,42 @@ position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:18px 8%;
-background:rgba(0,0,0,.85);
+padding:22px 8%;
+background:rgba(0,0,0,.92);
 backdrop-filter:blur(12px);
 display:flex;
 justify-content:space-between;
 align-items:center;
 z-index:1000;
+border-bottom:1px solid rgba(255,255,255,.05);
 }
 
 .brand{
 display:flex;
 align-items:center;
-gap:12px;
+gap:18px;
 }
 
 .brand img:first-child{
-height:42px;
+height:58px;
+width:auto;
 }
 
 .brand img:last-child{
-height:28px;
+height:78px;
+width:auto;
 }
 
 nav ul{
 display:flex;
-gap:30px;
 list-style:none;
+gap:40px;
 }
 
 nav ul a{
 text-decoration:none;
 color:white;
-font-size:.95rem;
+font-size:1rem;
 transition:.3s;
 }
 
@@ -85,7 +88,7 @@ color:#c58a4b;
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,.60),rgba(0,0,0,.60)),
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.7)),
 url('hero-background.png');
 background-size:cover;
 background-position:center;
@@ -97,160 +100,148 @@ text-align:center;
 
 .hero-content{
 max-width:900px;
-}
-
-.hero h1{
-font-size:5rem;
-margin-bottom:10px;
+padding-top:80px;
 }
 
 .tagline{
 color:#c58a4b;
-letter-spacing:5px;
-font-size:1.1rem;
-margin-bottom:25px;
+letter-spacing:8px;
+font-size:1.3rem;
+margin-bottom:30px;
 }
 
 .hero p{
-max-width:700px;
+font-size:1.4rem;
+line-height:1.8;
+font-weight:300;
+max-width:800px;
 margin:auto;
-font-size:1.15rem;
 }
 
 .btn{
 display:inline-block;
-margin-top:35px;
-padding:15px 35px;
+margin-top:40px;
+padding:18px 50px;
 background:#c58a4b;
 color:white;
 text-decoration:none;
-border-radius:40px;
+border-radius:50px;
 font-weight:600;
 transition:.3s;
 }
 
 .btn:hover{
-background:#d79b5b;
+background:#d59a59;
+transform:translateY(-2px);
+}
+
+/* SECTION HEADINGS */
+
+.section-title{
+font-size:4rem;
+text-align:center;
+margin-bottom:20px;
+}
+
+.divider{
+width:120px;
+height:2px;
+background:#c58a4b;
+margin:20px auto 50px;
 }
 
 /* STORY */
 
 .story{
-background:#151515;
-}
-
-.story-container{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-align-items:center;
-}
-
-.story img{
-width:100%;
-border-radius:20px;
-}
-
-.story h2{
-font-size:3rem;
-margin-bottom:20px;
-}
-
-.story p{
-color:#d6d6d6;
-}
-
-/* COFFEE */
-
-.coffee{
-background:#101010;
-}
-
-.coffee-container{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-align-items:center;
-}
-
-.coffee img{
-width:100%;
-border-radius:20px;
-}
-
-.coffee h2{
-font-size:3rem;
-margin-bottom:10px;
-}
-
-.trail-number{
-color:#c58a4b;
-letter-spacing:3px;
-font-size:.95rem;
-margin-bottom:10px;
-}
-
-.option-row{
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-margin-top:20px;
-}
-
-.option{
-border:1px solid #333;
-padding:10px 20px;
-border-radius:30px;
-}
-
-/* TRAIL MAP */
-
-.trail{
-background:#151515;
+background:#111;
 text-align:center;
 }
 
-.trail h2{
-font-size:3rem;
-margin-bottom:20px;
-}
-
-.trail p{
-max-width:800px;
+.story p{
+max-width:900px;
 margin:auto;
-margin-bottom:50px;
+font-size:1.15rem;
+line-height:2;
 color:#d6d6d6;
 }
 
-.trail img{
+/* PRODUCT */
+
+.product{
+background:#0d0d0d;
+}
+
+.product-container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.product img{
+width:100%;
+border-radius:18px;
+}
+
+.product h2{
+font-size:3.5rem;
+margin-bottom:20px;
+}
+
+.product p{
+line-height:2;
+font-size:1.05rem;
+color:#d8d8d8;
+}
+
+/* PLANT */
+
+.plant{
+background:#111;
+text-align:center;
+}
+
+.plant img{
+max-width:900px;
+width:100%;
+opacity:.95;
+}
+
+/* MAP */
+
+.map{
+background:#0d0d0d;
+text-align:center;
+}
+
+.map img{
 width:100%;
 max-width:1100px;
-border-radius:20px;
+border-radius:18px;
 }
 
 /* FUTURE TRAILS */
 
-.future{
-background:#101010;
+.trails{
+background:#111;
 }
 
-.future h2{
-font-size:3rem;
-text-align:center;
-margin-bottom:50px;
-}
-
-.future-grid{
+.trail-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 }
 
 .card{
-background:#181818;
-padding:35px;
-border-radius:20px;
+background:#191919;
+padding:45px;
+border-radius:18px;
 text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
 }
 
 .card h3{
@@ -262,24 +253,18 @@ margin-bottom:10px;
 /* CONTACT */
 
 .contact{
-background:#151515;
+background:#0d0d0d;
 text-align:center;
 }
 
-.contact h2{
-font-size:3rem;
-margin-bottom:25px;
-}
-
 .contact p{
-margin:12px 0;
+margin:15px 0;
+font-size:1.1rem;
 }
-
-/* FOOTER */
 
 footer{
 background:black;
-padding:25px;
+padding:30px;
 text-align:center;
 color:#999;
 }
@@ -288,29 +273,28 @@ color:#999;
 
 @media(max-width:900px){
 
-.story-container,
-.coffee-container{
+.product-container{
 grid-template-columns:1fr;
 }
 
-.hero h1{
-font-size:3rem;
+.brand img:first-child{
+height:42px;
+}
+
+.brand img:last-child{
+height:52px;
 }
 
 nav ul{
 display:none;
 }
 
-.brand img:first-child{
-height:35px;
+.section-title{
+font-size:2.8rem;
 }
 
-.brand img:last-child{
-height:22px;
-}
-
-section{
-padding:80px 7%;
+.hero p{
+font-size:1.1rem;
 }
 
 }
@@ -323,12 +307,12 @@ padding:80px 7%;
 <nav>
 
 <div class="brand">
-<img src="bean-logo.png">
-<img src="wordmark.png">
+<img src="bean-logo.png" alt="">
+<img src="wordmark.png" alt="">
 </div>
 
 <ul>
-<li><a href="#">Home</a></li>
+<li><a href="#home">Home</a></li>
 <li><a href="#story">Our Story</a></li>
 <li><a href="#coffee">Coffee</a></li>
 <li><a href="#trail">The Trail</a></li>
@@ -337,20 +321,18 @@ padding:80px 7%;
 
 </nav>
 
-<section class="hero">
+<section class="hero" id="home">
 
 <div class="hero-content">
-
-<h1>BRIO & BEAN</h1>
 
 <div class="tagline">
 THE COFFEE TRAIL
 </div>
 
 <p>
-Discover India's finest specialty coffees,
-one origin at a time.
+Discover India's finest specialty coffees, one origin at a time.
 Every cup is a stop along the trail.
+Every origin tells a story.
 </p>
 
 <a href="#coffee" class="btn">
@@ -363,69 +345,41 @@ Explore Coffee
 
 <section class="story" id="story">
 
-<div class="story-container">
+<h2 class="section-title">Our Story</h2>
 
-<img src="coffee-plant.png">
-
-<div>
-
-<h2>Our Story</h2>
+<div class="divider"></div>
 
 <p>
 Brio & Bean was created to explore India's rich coffee-growing regions and share their stories through exceptional coffee.
-</p>
 
-<br>
+Every origin is a stop on the trail, every cup a new discovery.
 
-<p>
-Every origin is a stop on the trail. Every cup is a new discovery.
-</p>
-
-<br>
-
-<p>
 Our journey begins in Karnataka and will continue across India's most celebrated coffee landscapes.
 </p>
 
-</div>
-
-</div>
-
 </section>
 
-<section class="coffee" id="coffee">
+<section class="product" id="coffee">
 
-<div class="coffee-container">
+<div class="product-container">
 
-<img src="product-shot-1.png">
+<div>
+<img src="product-shot-1.png" alt="">
+</div>
 
 <div>
 
-<div class="trail-number">
-TRAIL 01
-</div>
-
-<h2>House Blend</h2>
+<h2>Trail 01 — House Blend</h2>
 
 <p>
-Crafted from carefully selected Karnataka-grown specialty coffee.
-Designed as an approachable everyday cup with balance, character and consistency.
+The first stop on The Coffee Trail.
+
+A balanced specialty coffee crafted for everyday brewing, featuring rich chocolate notes, gentle sweetness and a smooth finish.
+
+Available as whole beans or freshly ground coffee.
+
+Origin: Karnataka, India.
 </p>
-
-<div class="option-row">
-<div class="option">Whole Beans</div>
-<div class="option">Ground Coffee</div>
-</div>
-
-<div class="option-row">
-<div class="option">250g</div>
-<div class="option">500g</div>
-<div class="option">1kg</div>
-</div>
-
-<a href="#" class="btn">
-Coming Soon
-</a>
 
 </div>
 
@@ -433,24 +387,33 @@ Coming Soon
 
 </section>
 
-<section class="trail" id="trail">
+<section class="plant">
 
-<h2>The Coffee Trail</h2>
+<h2 class="section-title">From Plant To Cup</h2>
 
-<p>
-Our mission is simple: travel origin to origin, discover exceptional coffees and bring each story to your cup.
-The trail starts in Karnataka, but it doesn't end there.
-</p>
+<div class="divider"></div>
 
-<img src="coffee-trail-map.png">
+<img src="coffee-plant.png" alt="">
 
 </section>
 
-<section class="future">
+<section class="map" id="trail">
 
-<h2>Future Trails</h2>
+<h2 class="section-title">The Coffee Trail</h2>
 
-<div class="future-grid">
+<div class="divider"></div>
+
+<img src="coffee-trail-map.png" alt="">
+
+</section>
+
+<section class="trails">
+
+<h2 class="section-title">Future Trails</h2>
+
+<div class="divider"></div>
+
+<div class="trail-grid">
 
 <div class="card">
 <h3>Trail 02</h3>
@@ -467,13 +430,20 @@ The trail starts in Karnataka, but it doesn't end there.
 <p>Coming Soon</p>
 </div>
 
+<div class="card">
+<h3>Trail 05</h3>
+<p>Coming Soon</p>
+</div>
+
 </div>
 
 </section>
 
 <section class="contact" id="contact">
 
-<h2>Contact</h2>
+<h2 class="section-title">Contact</h2>
+
+<div class="divider"></div>
 
 <p>Instagram: @brioandbean</p>
 
