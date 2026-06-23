@@ -206,6 +206,123 @@ color:#d8d8d8;
 }
 
 
+
+/* PREORDER */
+
+.preorder{
+background:#12100e;
+position:relative;
+overflow:hidden;
+}
+
+.preorder::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,rgba(197,138,75,.16),transparent 35%,rgba(255,255,255,.04));
+pointer-events:none;
+}
+
+.preorder-wrap{
+position:relative;
+z-index:1;
+max-width:1120px;
+margin:0 auto;
+display:grid;
+grid-template-columns:1fr 1.05fr;
+gap:48px;
+align-items:start;
+}
+
+.preorder-intro h2{
+font-size:3.6rem;
+margin-bottom:20px;
+}
+
+.preorder-intro p{
+color:#d8d8d8;
+font-size:1.05rem;
+line-height:2;
+margin-bottom:24px;
+}
+
+.preorder-note{
+display:inline-block;
+color:#c58a4b;
+font-weight:600;
+letter-spacing:.08em;
+text-transform:uppercase;
+font-size:.82rem;
+}
+
+.preorder-panel{
+background:rgba(0,0,0,.34);
+border:1px solid rgba(197,138,75,.22);
+border-radius:8px;
+padding:34px;
+box-shadow:0 24px 70px rgba(0,0,0,.28);
+}
+
+.order-field{
+margin-bottom:22px;
+}
+
+.order-field label{
+display:block;
+margin-bottom:10px;
+color:#c58a4b;
+font-size:.82rem;
+font-weight:600;
+letter-spacing:.08em;
+text-transform:uppercase;
+}
+
+.order-field select,
+.order-field input{
+width:100%;
+background:#090909;
+color:white;
+border:1px solid rgba(255,255,255,.16);
+border-radius:6px;
+padding:15px 16px;
+font-family:'Montserrat',sans-serif;
+font-size:1rem;
+}
+
+.order-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.order-summary{
+margin-top:8px;
+padding:18px;
+background:rgba(255,255,255,.05);
+border-left:3px solid #c58a4b;
+color:#f2f2f2;
+line-height:1.8;
+font-size:.98rem;
+white-space:pre-line;
+}
+
+.order-actions{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+margin-top:24px;
+}
+
+.btn.secondary{
+background:transparent;
+border:1px solid #c58a4b;
+color:#c58a4b;
+}
+
+.btn.secondary:hover{
+background:rgba(197,138,75,.12);
+}
+
 /* COFFEE TRAIL */
 
 .map{
@@ -337,6 +454,23 @@ line-height:1.7;
 .btn{
 padding:16px 34px;
 }
+
+.preorder-wrap{
+grid-template-columns:1fr;
+}
+
+.preorder-intro h2{
+font-size:2.8rem;
+}
+
+.order-grid{
+grid-template-columns:1fr;
+}
+
+.order-actions .btn{
+width:100%;
+text-align:center;
+}
 }
 </style>
 </head>
@@ -353,6 +487,7 @@ padding:16px 34px;
 <li><a href="#home">Home</a></li>
 <li><a href="#story">Our Story</a></li>
 <li><a href="#coffee">Coffee</a></li>
+<li><a href="#preorder">Pre Order</a></li>
 <li><a href="#trail">The Trail</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
@@ -372,8 +507,8 @@ Brio & Bean explores India's finest specialty coffees, one origin at a time.
 Every cup is a stop along the trail. Every origin tells a story.
 </p>
 
-<a href="#coffee" class="btn">
-Explore Coffee
+<a href="#preorder" class="btn">
+Pre Order
 </a>
 
 </div>
@@ -418,6 +553,68 @@ Origin: Karnataka, India.
 
 </section>
 
+
+<section class="preorder" id="preorder">
+
+<div class="preorder-wrap">
+
+<div class="preorder-intro">
+<span class="preorder-note">Medium roast only</span>
+<h2>Pre Order The First Trail</h2>
+<p>
+Choose your coffee, pack size, and grind preference. We are keeping the first drop simple: medium roast, two coffee options, and three trail-ready pack sizes.
+</p>
+<p>
+Trail 01 is for people who want to begin the Brio & Bean journey before the shelves are full. Pick your destination and send us your preorder details on Instagram.
+</p>
+</div>
+
+<div class="preorder-panel">
+
+<div class="order-field">
+<label for="coffeeType">Coffee</label>
+<select id="coffeeType">
+<option value="House Blend">House Blend</option>
+<option value="100% Arabica - Single Origin">100% Arabica - Single Origin</option>
+</select>
+</div>
+
+<div class="order-grid">
+<div class="order-field">
+<label for="packSize">Pack Size</label>
+<select id="packSize">
+<option value="100g - Explorer's Pack">100g - Explorer's Pack</option>
+<option value="250g - Trail Pack">250g - Trail Pack</option>
+<option value="500g - Journey Pack">500g - Journey Pack</option>
+</select>
+</div>
+
+<div class="order-field">
+<label for="grindType">Grind</label>
+<select id="grindType">
+<option value="Beans">Beans</option>
+<option value="Ground Coffee">Ground Coffee</option>
+</select>
+</div>
+</div>
+
+<div class="order-field">
+<label for="customerName">Name</label>
+<input id="customerName" type="text" placeholder="Your name">
+</div>
+
+<div class="order-summary" id="orderSummary"></div>
+
+<div class="order-actions">
+<button class="btn" type="button" id="copyOrder">Copy Preorder</button>
+<a class="btn secondary" href="https://instagram.com/brioandbean" target="_blank">DM on Instagram</a>
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 
 <section class="map" id="trail">
@@ -505,6 +702,48 @@ brioandbean.in
 © 2026 Brio & Bean | The Coffee Trail
 
 </footer>
+
+
+<script>
+const coffeeType = document.getElementById('coffeeType');
+const packSize = document.getElementById('packSize');
+const grindType = document.getElementById('grindType');
+const customerName = document.getElementById('customerName');
+const orderSummary = document.getElementById('orderSummary');
+const copyOrder = document.getElementById('copyOrder');
+
+function buildOrderMessage(){
+const nameValue = customerName.value.trim() || 'Customer';
+return 'Hi Brio & Bean, I would like to pre-order:\n\n' +
+'Name: ' + nameValue + '\n' +
+'Coffee: ' + coffeeType.value + '\n' +
+'Roast: Medium Roast\n' +
+'Pack: ' + packSize.value + '\n' +
+'Grind: ' + grindType.value;
+}
+
+function updateOrderSummary(){
+orderSummary.textContent = buildOrderMessage();
+}
+
+[coffeeType, packSize, grindType, customerName].forEach((field) => {
+field.addEventListener('input', updateOrderSummary);
+field.addEventListener('change', updateOrderSummary);
+});
+
+copyOrder.addEventListener('click', async () => {
+const message = buildOrderMessage();
+try{
+await navigator.clipboard.writeText(message);
+copyOrder.textContent = 'Copied';
+setTimeout(() => copyOrder.textContent = 'Copy Preorder', 1600);
+}catch(error){
+orderSummary.textContent = message;
+}
+});
+
+updateOrderSummary();
+</script>
 
 </body>
 </html>
