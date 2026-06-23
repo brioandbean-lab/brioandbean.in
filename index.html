@@ -565,7 +565,7 @@ Origin: Karnataka, India.
 Choose your coffee, pack size, and grind preference. We are keeping the first drop simple: medium roast, two coffee options, and three trail-ready pack sizes.
 </p>
 <p>
-Trail 01 is for people who want to begin the Brio & Bean journey before the shelves are full. Pick your destination and send us your preorder details on Instagram.
+Trail 01 is for people who want to begin the Brio & Bean journey before the shelves are full. Pick your pack, add your phone number, and send the preorder details to us.
 </p>
 </div>
 
@@ -598,16 +598,23 @@ Trail 01 is for people who want to begin the Brio & Bean journey before the shel
 </div>
 </div>
 
+<div class="order-grid">
 <div class="order-field">
 <label for="customerName">Name</label>
 <input id="customerName" type="text" placeholder="Your name">
 </div>
 
+<div class="order-field">
+<label for="customerPhone">Phone Number</label>
+<input id="customerPhone" type="tel" placeholder="Your phone number">
+</div>
+</div>
+
 <div class="order-summary" id="orderSummary"></div>
 
 <div class="order-actions">
-<button class="btn" type="button" id="copyOrder">Copy Preorder</button>
-<a class="btn secondary" href="https://instagram.com/brioandbean" target="_blank">DM on Instagram</a>
+<button class="btn" type="button" id="preorderInstagram">Preorder on Instagram</button>
+<a class="btn secondary" id="emailOrder" href="mailto:team.brioandbean@gmail.com">Email Preorder Copy</a>
 </div>
 
 </div>
@@ -651,22 +658,22 @@ Our journey begins in Karnataka, then moves through the estates and valleys that
 
 <div class="card">
 <h3>Trail 02</h3>
-<p>Chikkamagaluru</p>
+<p>Destination Reveal Soon</p>
 </div>
 
 <div class="card">
 <h3>Trail 03</h3>
-<p>Araku Valley</p>
+<p>Estate Stamp Pending</p>
 </div>
 
 <div class="card">
 <h3>Trail 04</h3>
-<p>Wayanad</p>
+<p>Next Origin Loading</p>
 </div>
 
 <div class="card">
 <h3>Trail 05</h3>
-<p>Bababudangiri</p>
+<p>Mystery Trail</p>
 </div>
 
 </div>
@@ -683,6 +690,13 @@ Our journey begins in Karnataka, then moves through the estates and valleys that
 Instagram:
 <a href="https://instagram.com/brioandbean" target="_blank">
 @brioandbean
+</a>
+</p>
+
+<p>
+Email:
+<a href="mailto:team.brioandbean@gmail.com">
+team.brioandbean@gmail.com
 </a>
 </p>
 
@@ -709,13 +723,17 @@ const coffeeType = document.getElementById('coffeeType');
 const packSize = document.getElementById('packSize');
 const grindType = document.getElementById('grindType');
 const customerName = document.getElementById('customerName');
+const customerPhone = document.getElementById('customerPhone');
 const orderSummary = document.getElementById('orderSummary');
-const copyOrder = document.getElementById('copyOrder');
+const preorderInstagram = document.getElementById('preorderInstagram');
+const emailOrder = document.getElementById('emailOrder');
 
 function buildOrderMessage(){
 const nameValue = customerName.value.trim() || 'Customer';
+const phoneValue = customerPhone.value.trim() || 'Not provided';
 return 'Hi Brio & Bean, I would like to pre-order:\n\n' +
 'Name: ' + nameValue + '\n' +
+'Phone: ' + phoneValue + '\n' +
 'Coffee: ' + coffeeType.value + '\n' +
 'Roast: Medium Roast\n' +
 'Pack: ' + packSize.value + '\n' +
@@ -723,23 +741,28 @@ return 'Hi Brio & Bean, I would like to pre-order:\n\n' +
 }
 
 function updateOrderSummary(){
-orderSummary.textContent = buildOrderMessage();
+const message = buildOrderMessage();
+orderSummary.textContent = message;
+emailOrder.href = 'mailto:team.brioandbean@gmail.com?subject=' + encodeURIComponent('Brio & Bean Preorder') + '&body=' + encodeURIComponent(message);
 }
 
-[coffeeType, packSize, grindType, customerName].forEach((field) => {
+[coffeeType, packSize, grindType, customerName, customerPhone].forEach((field) => {
 field.addEventListener('input', updateOrderSummary);
 field.addEventListener('change', updateOrderSummary);
 });
 
-copyOrder.addEventListener('click', async () => {
+preorderInstagram.addEventListener('click', async () => {
 const message = buildOrderMessage();
 try{
 await navigator.clipboard.writeText(message);
-copyOrder.textContent = 'Copied';
-setTimeout(() => copyOrder.textContent = 'Copy Preorder', 1600);
+preorderInstagram.textContent = 'Order Copied';
 }catch(error){
 orderSummary.textContent = message;
 }
+setTimeout(() => {
+window.open('https://instagram.com/brioandbean', '_blank');
+preorderInstagram.textContent = 'Preorder on Instagram';
+}, 500);
 });
 
 updateOrderSummary();
