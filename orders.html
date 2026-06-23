@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brio & Bean Orders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3ede4;
+  --ink:#231712;
+  --muted:#6f5b4f;
+  --accent:#9a6336;
+  --accent-deep:#6e4322;
+  --paper:#fffaf4;
+  --line:rgba(44,29,18,.12);
+  --shadow:0 24px 60px rgba(59,36,18,.12);
+  --success:#2f6b4f;
+  --error:#b24e3f;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Montserrat',sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(154,99,54,.16), transparent 34%),
+    linear-gradient(180deg, #f8f2ea 0%, var(--bg) 100%);
+}
+main{
+  width:min(1120px, calc(100% - 32px));
+  margin:0 auto;
+  padding:48px 0 72px;
+}
+.hero{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:flex-end;
+  margin-bottom:28px;
+}
+.kicker{
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-size:.78rem;
+  margin-bottom:14px;
+}
+h1{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem, 5vw, 4.6rem);
+  line-height:.95;
+}
+.subtitle{
+  max-width:620px;
+  color:var(--muted);
+  line-height:1.8;
+  margin-top:14px;
+}
+.badge{
+  padding:10px 14px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(255,250,244,.82);
+  color:var(--muted);
+  font-size:.85rem;
+}
+.panel{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.controls{
+  display:grid;
+  grid-template-columns:1.2fr auto auto;
+  gap:16px;
+  padding:24px;
+  border-bottom:1px solid var(--line);
+}
+label{
+  display:block;
+  font-size:.82rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+input{
+  width:100%;
+  height:52px;
+  padding:0 16px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#fff;
+  font:inherit;
+  color:var(--ink);
+}
+button{
+  height:52px;
+  padding:0 22px;
+  border:none;
+  border-radius:14px;
+  background:var(--accent);
+  color:#fff;
+  font:600 .95rem 'Montserrat',sans-serif;
+  cursor:pointer;
+}
+button.secondary{
+  background:#fff;
+  color:var(--accent-deep);
+  border:1px solid rgba(154,99,54,.28);
+}
+button:disabled{
+  opacity:.7;
+  cursor:progress;
+}
+.status{
+  padding:0 24px 20px;
+  color:var(--muted);
+  min-height:22px;
+}
+.status.error{color:var(--error);}
+.status.success{color:var(--success);}
+.summary{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+  padding:0 24px 24px;
+}
+.metric{
+  background:rgba(154,99,54,.06);
+  border:1px solid rgba(154,99,54,.1);
+  border-radius:18px;
+  padding:18px;
+}
+.metric-title{
+  color:var(--muted);
+  font-size:.82rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.metric-value{
+  margin-top:10px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;
+}
+.table-wrap{
+  overflow:auto;
+  border-top:1px solid var(--line);
+}
+.table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:860px;
+}
+th,td{
+  text-align:left;
+  padding:16px 18px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+  font-size:.94rem;
+}
+th{
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--muted);
+  background:rgba(255,250,244,.75);
+}
+.empty{
+  padding:40px 24px;
+  color:var(--muted);
+}
+.pill{
+  display:inline-block;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(154,99,54,.1);
+  color:var(--accent-deep);
+  font-size:.78rem;
+  margin-right:6px;
+  margin-bottom:6px;
+}
+@media (max-width: 860px){
+  .hero{display:block;}
+  .badge{display:inline-flex; margin-top:18px;}
+  .controls{grid-template-columns:1fr;}
+  .summary{grid-template-columns:1fr;}
+  button{width:100%;}
+}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div>
+      <div class="kicker">Brio & Bean</div>
+      <h1>Preorder Ledger</h1>
+      <p class="subtitle">A private view of the first trail orders. Enter your access key to load the latest preorders from the live site.</p>
+    </div>
+    <div class="badge">Private orders view</div>
+  </section>
+
+  <section class="panel">
+    <div class="controls">
+      <div>
+        <label for="accessKey">Access Key</label>
+        <input id="accessKey" type="password" placeholder="Enter your private orders key">
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button id="loadOrders">Load Orders</button>
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button class="secondary" id="clearKey">Clear Key</button>
+      </div>
+    </div>
+    <div class="status" id="statusText">Waiting for access key.</div>
+    <div class="summary">
+      <div class="metric">
+        <div class="metric-title">Total Loaded</div>
+        <div class="metric-value" id="totalOrders">0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-title">Latest Name</div>
+        <div class="metric-value" id="latestName">-</div>
+      </div>
+      <div class="metric">
+        <div class="metric-title">Latest Pack</div>
+        <div class="metric-value" id="latestPack">-</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Placed</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Coffee</th>
+            <th>Pack</th>
+            <th>Grind</th>
+          </tr>
+        </thead>
+        <tbody id="ordersBody">
+          <tr><td class="empty" colspan="6">No orders loaded yet.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+const API_URL = 'https://brioandbean-in.vercel.app/api/orders';
+const accessKey = document.getElementById('accessKey');
+const loadOrders = document.getElementById('loadOrders');
+const clearKey = document.getElementById('clearKey');
+const statusText = document.getElementById('statusText');
+const totalOrders = document.getElementById('totalOrders');
+const latestName = document.getElementById('latestName');
+const latestPack = document.getElementById('latestPack');
+const ordersBody = document.getElementById('ordersBody');
+
+const storedKey = localStorage.getItem('brio_bean_orders_key');
+if(storedKey){
+  accessKey.value = storedKey;
+  statusText.textContent = 'Saved key found. Load orders when ready.';
+}
+
+function formatDate(value){
+  if(!value) return '-';
+  return new Date(value).toLocaleString('en-IN', {
+    day:'2-digit',
+    month:'short',
+    year:'numeric',
+    hour:'2-digit',
+    minute:'2-digit'
+  });
+}
+
+function setStatus(message, type){
+  statusText.textContent = message;
+  statusText.className = 'status';
+  if(type){
+    statusText.classList.add(type);
+  }
+}
+
+function renderOrders(orders){
+  totalOrders.textContent = String(orders.length);
+  latestName.textContent = orders[0] ? orders[0].name : '-';
+  latestPack.textContent = orders[0] ? orders[0].pack_size : '-';
+
+  if(!orders.length){
+    ordersBody.innerHTML = '<tr><td class="empty" colspan="6">No preorders yet.</td></tr>';
+    return;
+  }
+
+  ordersBody.innerHTML = orders.map((order) => {
+    return '<tr>' +
+      '<td>' + formatDate(order.created_at) + '</td>' +
+      '<td><strong>' + order.name + '</strong><br><span class="pill">' + order.roast + '</span></td>' +
+      '<td>' + order.phone + '</td>' +
+      '<td>' + order.coffee + '</td>' +
+      '<td>' + order.pack_size + '</td>' +
+      '<td>' + order.grind + '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+async function fetchOrders(){
+  const key = accessKey.value.trim();
+  if(!key){
+    setStatus('Enter the access key first.', 'error');
+    return;
+  }
+
+  localStorage.setItem('brio_bean_orders_key', key);
+  loadOrders.disabled = true;
+  loadOrders.textContent = 'Loading...';
+  setStatus('Loading latest orders...');
+
+  try{
+    const response = await fetch(API_URL, {
+      headers: {
+        'X-Admin-Key': key
+      }
+    });
+
+    if(response.status === 401){
+      throw new Error('Access key is not correct.');
+    }
+
+    if(!response.ok){
+      throw new Error('Orders could not be loaded right now.');
+    }
+
+    const data = await response.json();
+    renderOrders(data.orders || []);
+    setStatus('Orders loaded successfully.', 'success');
+  }catch(error){
+    setStatus(error.message || 'Orders could not be loaded right now.', 'error');
+  }finally{
+    loadOrders.disabled = false;
+    loadOrders.textContent = 'Load Orders';
+  }
+}
+
+loadOrders.addEventListener('click', fetchOrders);
+accessKey.addEventListener('keydown', (event) => {
+  if(event.key === 'Enter'){
+    fetchOrders();
+  }
+});
+clearKey.addEventListener('click', () => {
+  localStorage.removeItem('brio_bean_orders_key');
+  accessKey.value = '';
+  renderOrders([]);
+  latestName.textContent = '-';
+  latestPack.textContent = '-';
+  setStatus('Saved key cleared.');
+});
+</script>
+</body>
+</html>
