@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Brio & Bean | The Coffee Trail</title>
-<meta name="description" content="Brio & Bean - The Coffee Trail. A Karnataka-born specialty coffee brand exploring India's finest origins, one trail at a time.">
+<title>Brio &amp; Bean | The Coffee Trail</title>
+<meta name="description" content="Brio &amp; Bean - The Coffee Trail. A Karnataka-born specialty coffee brand exploring India's finest origins, one trail at a time.">
 
-<meta property="og:title" content="Brio & Bean | The Coffee Trail">
+<meta property="og:title" content="Brio &amp; Bean | The Coffee Trail">
 <meta property="og:description" content="A Karnataka-born specialty coffee brand exploring India's finest origins, one trail at a time.">
 <meta property="og:image" content="https://brioandbean.in/product-shot-1.png">
 <meta property="og:url" content="https://brioandbean.in">
 <meta property="og:type" content="website">
 
 <link rel="icon" href="bean-logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 
 <style>
 
@@ -511,7 +509,7 @@ THE COFFEE TRAIL
 </div>
 
 <p>
-Brio & Bean explores India's finest specialty coffees, one origin at a time.
+Brio &amp; Bean explores India's finest specialty coffees, one origin at a time.
 Every cup is a stop along the trail. Every origin tells a story.
 </p>
 
@@ -530,7 +528,7 @@ Pre Order
 <div class="divider"></div>
 
 <p>
-Brio & Bean was created to explore India's coffee-growing regions and share their stories through carefully crafted coffee. Every origin is a stop on the trail, every cup a new discovery, and every release is designed to feel like a journey from estate to cup.
+Brio &amp; Bean was created to explore India's coffee-growing regions and share their stories through carefully crafted coffee. Every origin is a stop on the trail, every cup a new discovery, and every release is designed to feel like a journey from estate to cup.
 </p>
 
 </section>
@@ -573,7 +571,7 @@ Origin: Karnataka, India.
 Choose your coffee, pack size, and grind preference. We are keeping the first drop simple: medium roast, two coffee options, and three trail-ready pack sizes.
 </p>
 <p>
-Trail 01 is for people who want to begin the Brio & Bean journey before the shelves are full. Pick your pack, add your phone number, and we will safely save the preorder details.
+Trail 01 is for people who want to begin the Brio &amp; Bean journey before the shelves are full. Pick your pack, add your phone number, and place your preorder directly on the site.
 </p>
 </div>
 
@@ -618,11 +616,18 @@ Trail 01 is for people who want to begin the Brio & Bean journey before the shel
 </div>
 </div>
 
-<div class="order-summary" id="orderSummary"></div>
+<div class="order-summary" id="orderSummary">Hi Brio &amp; Bean, I would like to pre-order:
+
+Name: Customer
+Phone: Not provided
+Coffee: House Blend
+Roast: Medium Roast
+Pack: 100g - Explorer's Pack
+Grind: Beans</div>
 
 <div class="order-actions">
 <button class="btn" type="button" id="preorderInstagram">Preorder on Instagram</button>
-<a class="btn secondary" id="emailOrder" href="mailto:team.brioandbean@gmail.com">Email Preorder Copy</a>
+<a class="btn secondary" id="emailOrder" href="mailto:team.brioandbean@gmail.com?subject=Brio%20%26%20Bean%20Preorder&amp;body=Hi%20Brio%20%26%20Bean%2C%20I%20would%20like%20to%20pre-order%3A%0A%0AName%3A%20Customer%0APhone%3A%20Not%20provided%0ACoffee%3A%20House%20Blend%0ARoast%3A%20Medium%20Roast%0APack%3A%20100g%20-%20Explorer's%20Pack%0AGrind%3A%20Beans">Email Preorder Copy</a>
 </div>
 
 </div>
@@ -721,7 +726,7 @@ brioandbean.in
 
 <footer>
 
-© 2026 Brio & Bean | The Coffee Trail
+© 2026 Brio &amp; Bean | The Coffee Trail
 
 </footer>
 
@@ -735,7 +740,6 @@ const customerName = document.getElementById('customerName');
 const customerPhone = document.getElementById('customerPhone');
 const orderSummary = document.getElementById('orderSummary');
 const preorderInstagram = document.getElementById('preorderInstagram');
-const emailOrder = document.getElementById('emailOrder');
 
 function buildOrderData(){
 return {
@@ -771,7 +775,6 @@ orderSummary.classList.add(type);
 function updateOrderSummary(){
 const message = buildOrderMessage();
 setOrderStatus(message);
-emailOrder.href = 'mailto:team.brioandbean@gmail.com?subject=' + encodeURIComponent('Brio & Bean Preorder') + '&body=' + encodeURIComponent(message);
 }
 
 function validateOrder(order){
@@ -817,25 +820,19 @@ if(!response.ok){
 throw new Error('Preorder could not be saved');
 }
 
-try{
-await navigator.clipboard.writeText(message);
-}catch(error){}
-
-setOrderStatus('Preorder saved. Opening Instagram with your order copied.', 'success');
-setTimeout(() => {
-window.open('https://instagram.com/brioandbean', '_blank');
+setOrderStatus('Preorder saved successfully. We will reach out to you soon.', 'success');
 preorderInstagram.disabled = false;
-preorderInstagram.textContent = 'Preorder on Instagram';
-}, 700);
+preorderInstagram.textContent = 'Preorder Placed';
 }catch(error){
 setOrderStatus('Sorry, we could not save this preorder. Please try again or use the email option.', 'error');
 preorderInstagram.disabled = false;
-preorderInstagram.textContent = 'Preorder on Instagram';
+preorderInstagram.textContent = 'Place Preorder';
 }
 });
 
 updateOrderSummary();
 </script>
 
-</body>
-</html>
+
+
+</body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>
