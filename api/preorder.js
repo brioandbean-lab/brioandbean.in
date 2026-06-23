@@ -26,11 +26,53 @@ function validatePreorder(order){
     }
   }
 
-  if(clean(order.phone).replace(/\D/g, '').length < 10){
+  if(clean(order.phone).replace(/D/g, '').length < 10){
     return 'phone is invalid';
   }
 
   return '';
+}
+
+async function sendPreorderAlert(preorder){
+  const resendApiKey = clean(process.env.RESEND_API_KEY);
+  const alertEmail = clean(process.env.PREORDER_ALERT_EMAIL) || 'team.brioandbean@gmail.com';
+  const fromEmail = clean(process.env.PREORDER_FROM_EMAIL);
+
+  if(!resendApiKey || !fromEmail){
+    return { skipped: true };
+  }
+
+  const subject = 'New Brio & Bean preorder from ' + preorder.name;
+  const html = [
+    '<h2>New preorder received</h2>',
+    '<p><strong>Name:</strong> ' + preorder.name + '</p>',
+    '<p><strong>Phone:</strong> ' + preorder.phone + '</p>',
+    '<p><strong>Coffee:</strong> ' + preorder.coffee + '</p>',
+    '<p><strong>Roast:</strong> ' + preorder.roast + '</p>',
+    '<p><strong>Pack:</strong> ' + preorder.pack_size + '</p>',
+    '<p><strong>Grind:</strong> ' + preorder.grind + '</p>',
+    '<p><strong>Source:</strong> ' + preorder.source + '</p>'
+  ].join('');
+
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + resendApiKey,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: fromEmail,
+      to: [alertEmail],
+      subject,
+      html
+    })
+  });
+
+  if(!response.ok){
+    return { skipped: false, ok: false };
+  }
+
+  return { skipped: false, ok: true };
 }
 
 module.exports = async function handler(req, res){
@@ -44,7 +86,7 @@ module.exports = async function handler(req, res){
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const supabaseUrl = clean(process.env.SUPABASE_URL).replace(/\/$/, '');
+  const supabaseUrl = clean(process.env.SUPABASE_URL).replace(//$/, '');
   const serviceRoleKey = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   if(!supabaseUrl || !serviceRoleKey){
@@ -83,5 +125,6 @@ module.exports = async function handler(req, res){
     return res.status(502).json({ error: 'Could not save preorder' });
   }
 
-  return res.status(200).json({ ok: true });
+  const emailStatus = await sendPreorderAlert(preorder);
+  return res.status(200).json({ ok: true, email: emailStatus });
 };
