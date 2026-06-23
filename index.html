@@ -305,6 +305,14 @@ line-height:1.8;
 font-size:.98rem;
 white-space:pre-line;
 }
+.order-summary.success{
+border-left-color:#7bbf7a;
+color:#dff5dc;
+}
+.order-summary.error{
+border-left-color:#d87263;
+color:#ffe1dc;
+}
 
 .order-actions{
 display:flex;
@@ -565,7 +573,7 @@ Origin: Karnataka, India.
 Choose your coffee, pack size, and grind preference. We are keeping the first drop simple: medium roast, two coffee options, and three trail-ready pack sizes.
 </p>
 <p>
-Trail 01 is for people who want to begin the Brio & Bean journey before the shelves are full. Pick your pack, add your phone number, and send the preorder details to us.
+Trail 01 is for people who want to begin the Brio & Bean journey before the shelves are full. Pick your pack, add your phone number, and we will safely save the preorder details.
 </p>
 </div>
 
@@ -719,6 +727,7 @@ brioandbean.in
 
 
 <script>
+const PREORDER_API_URL = 'https://brioandbean-in.vercel.app/api/preorder';
 const coffeeType = document.getElementById('coffeeType');
 const packSize = document.getElementById('packSize');
 const grindType = document.getElementById('grindType');
@@ -728,22 +737,54 @@ const orderSummary = document.getElementById('orderSummary');
 const preorderInstagram = document.getElementById('preorderInstagram');
 const emailOrder = document.getElementById('emailOrder');
 
+function buildOrderData(){
+return {
+name: customerName.value.trim(),
+phone: customerPhone.value.trim(),
+coffee: coffeeType.value,
+roast: 'Medium Roast',
+pack_size: packSize.value,
+grind: grindType.value,
+source: 'website'
+};
+}
+
 function buildOrderMessage(){
-const nameValue = customerName.value.trim() || 'Customer';
-const phoneValue = customerPhone.value.trim() || 'Not provided';
+const order = buildOrderData();
 return 'Hi Brio & Bean, I would like to pre-order:\n\n' +
-'Name: ' + nameValue + '\n' +
-'Phone: ' + phoneValue + '\n' +
-'Coffee: ' + coffeeType.value + '\n' +
-'Roast: Medium Roast\n' +
-'Pack: ' + packSize.value + '\n' +
-'Grind: ' + grindType.value;
+'Name: ' + (order.name || 'Customer') + '\n' +
+'Phone: ' + (order.phone || 'Not provided') + '\n' +
+'Coffee: ' + order.coffee + '\n' +
+'Roast: ' + order.roast + '\n' +
+'Pack: ' + order.pack_size + '\n' +
+'Grind: ' + order.grind;
+}
+
+function setOrderStatus(message, type){
+orderSummary.textContent = message;
+orderSummary.classList.remove('success', 'error');
+if(type){
+orderSummary.classList.add(type);
+}
 }
 
 function updateOrderSummary(){
 const message = buildOrderMessage();
-orderSummary.textContent = message;
+setOrderStatus(message);
 emailOrder.href = 'mailto:team.brioandbean@gmail.com?subject=' + encodeURIComponent('Brio & Bean Preorder') + '&body=' + encodeURIComponent(message);
+}
+
+function validateOrder(order){
+if(!order.name){
+return 'Please add your name.';
+}
+if(!order.phone){
+return 'Please add your phone number.';
+}
+if(order.phone.replace(/\D/g, '').length < 10){
+return 'Please enter a valid phone number.';
+}
+return '';
 }
 
 [coffeeType, packSize, grindType, customerName, customerPhone].forEach((field) => {
@@ -752,17 +793,45 @@ field.addEventListener('change', updateOrderSummary);
 });
 
 preorderInstagram.addEventListener('click', async () => {
+const order = buildOrderData();
+const validationMessage = validateOrder(order);
+if(validationMessage){
+setOrderStatus(validationMessage, 'error');
+return;
+}
+
 const message = buildOrderMessage();
+preorderInstagram.disabled = true;
+preorderInstagram.textContent = 'Saving...';
+
+try{
+const response = await fetch(PREORDER_API_URL, {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify(order)
+});
+
+if(!response.ok){
+throw new Error('Preorder could not be saved');
+}
+
 try{
 await navigator.clipboard.writeText(message);
-preorderInstagram.textContent = 'Order Copied';
-}catch(error){
-orderSummary.textContent = message;
-}
+}catch(error){}
+
+setOrderStatus('Preorder saved. Opening Instagram with your order copied.', 'success');
 setTimeout(() => {
 window.open('https://instagram.com/brioandbean', '_blank');
+preorderInstagram.disabled = false;
 preorderInstagram.textContent = 'Preorder on Instagram';
-}, 500);
+}, 700);
+}catch(error){
+setOrderStatus('Sorry, we could not save this preorder. Please try again or use the email option.', 'error');
+preorderInstagram.disabled = false;
+preorderInstagram.textContent = 'Preorder on Instagram';
+}
 });
 
 updateOrderSummary();
