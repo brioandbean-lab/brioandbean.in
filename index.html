@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Brio & Bean | The Coffee Trail</title>
-<meta name="description" content="Brio & Bean - The Coffee Trail. Discover India's finest specialty coffees, one origin at a time.">
+<meta name="description" content="Brio & Bean - The Coffee Trail. A Karnataka-born specialty coffee brand exploring India's finest origins, one trail at a time.">
 
 <meta property="og:title" content="Brio & Bean | The Coffee Trail">
-<meta property="og:description" content="Discover India's finest specialty coffees, one origin at a time.">
+<meta property="og:description" content="A Karnataka-born specialty coffee brand exploring India's finest origins, one trail at a time.">
 <meta property="og:image" content="https://brioandbean.in/product-shot-1.png">
 <meta property="og:url" content="https://brioandbean.in">
 <meta property="og:type" content="website">
@@ -39,6 +39,7 @@ font-family:'Cormorant Garamond',serif;
 
 section{
 padding:100px 8%;
+scroll-margin-top:150px;
 }
 
 /* NAVBAR */
@@ -48,8 +49,8 @@ position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:22px 8%;
-background:rgba(0,0,0,.92);
+padding:16px 8%;
+background:rgba(0,0,0,.88);
 backdrop-filter:blur(12px);
 display:flex;
 justify-content:space-between;
@@ -65,7 +66,7 @@ gap:18px;
 }
 
 .brand img{
-height:95px;
+height:78px;
 width:auto;
 display:block;
 }
@@ -92,10 +93,11 @@ color:#c58a4b;
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.7)),
+linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.56),rgba(0,0,0,.82)),
 url('hero-background.png');
 background-size:cover;
 background-position:center;
+position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -103,19 +105,21 @@ text-align:center;
 }
 
 .hero-content{
-max-width:900px;
-padding-top:80px;
+max-width:860px;
+padding:110px 24px 0;
+position:relative;
+z-index:1;
 }
 
 .tagline{
 color:#c58a4b;
 letter-spacing:8px;
-font-size:1.3rem;
+font-size:1.15rem;
 margin-bottom:30px;
 }
 
 .hero p{
-font-size:1.4rem;
+font-size:1.28rem;
 line-height:1.8;
 font-weight:300;
 max-width:800px;
@@ -129,7 +133,9 @@ padding:18px 50px;
 background:#c58a4b;
 color:white;
 text-decoration:none;
-border-radius:50px;
+border-radius:6px;
+letter-spacing:.06em;
+text-transform:uppercase;
 font-weight:600;
 transition:.3s;
 }
@@ -184,7 +190,8 @@ align-items:center;
 
 .product img{
 width:100%;
-border-radius:18px;
+border-radius:8px;
+box-shadow:0 24px 70px rgba(0,0,0,.42);
 }
 
 .product h2{
@@ -235,7 +242,7 @@ gap:25px;
 .card{
 background:#191919;
 padding:45px;
-border-radius:18px;
+border-radius:8px;
 text-align:center;
 transition:.3s;
 }
@@ -295,6 +302,42 @@ font-size:1.1rem;
 
 }
 
+
+.contact a{
+color:#c58a4b;
+text-decoration:none;
+}
+
+.contact a:hover{
+color:#d59a59;
+}
+
+@media(max-width:900px){
+nav{
+padding:14px 7%;
+justify-content:center;
+}
+
+.hero{
+min-height:100vh;
+height:auto;
+background-position:62% center;
+}
+
+.hero-content{
+padding-top:120px;
+}
+
+.tagline{
+letter-spacing:5px;
+font-size:1rem;
+line-height:1.7;
+}
+
+.btn{
+padding:16px 34px;
+}
+}
 </style>
 </head>
 
@@ -325,9 +368,8 @@ THE COFFEE TRAIL
 </div>
 
 <p>
-Discover India's finest specialty coffees, one origin at a time.
-Every cup is a stop along the trail.
-Every origin tells a story.
+Brio & Bean explores India's finest specialty coffees, one origin at a time.
+Every cup is a stop along the trail. Every origin tells a story.
 </p>
 
 <a href="#coffee" class="btn">
@@ -345,11 +387,7 @@ Explore Coffee
 <div class="divider"></div>
 
 <p>
-Brio & Bean was created to explore India's rich coffee-growing regions and share their stories through exceptional coffee.
-
-Every origin is a stop on the trail, every cup a new discovery.
-
-Our journey begins in Karnataka and will continue across India's most celebrated coffee landscapes.
+Brio & Bean was created to explore India's coffee-growing regions and share their stories through carefully crafted coffee. Every origin is a stop on the trail, every cup a new discovery, and every release is designed to feel like a journey from estate to cup.
 </p>
 
 </section>
@@ -364,14 +402,12 @@ Our journey begins in Karnataka and will continue across India's most celebrated
 
 <div>
 
-<h2>Trail 01 — House Blend</h2>
+<h2>Trail 01 - House Blend</h2>
 
 <p>
-The first stop on The Coffee Trail.
+The first stop on The Coffee Trail. Crafted from Karnataka-grown specialty coffee, Trail 01 is built as an approachable everyday cup with balance, character, and consistency.
 
-Crafted from carefully selected Karnataka-grown specialty coffee, Trail 01 is designed as an approachable everyday cup with balance, character and consistency.
-
-Available as whole beans or freshly ground coffee.
+Available soon as whole beans and freshly ground coffee.
 
 Origin: Karnataka, India.
 </p>
@@ -391,20 +427,19 @@ Origin: Karnataka, India.
 <div class="divider"></div>
 
 <p>
-Brio & Bean was created with a simple idea:
-to travel across India's celebrated coffee-growing regions and bring each origin's story to your cup.
+The Coffee Trail is our way of mapping India through coffee: origin by origin, roast by roast, story by story.
 </p>
 
 <br><br>
 
 <p>
-Every coffee we release becomes a new stop on the trail.
+Every release becomes a new destination, with its own tasting notes, origin story, and brewing mood.
 </p>
 
 <br><br>
 
 <p>
-Our journey begins in Karnataka, with many more origins waiting ahead.
+Our journey begins in Karnataka, then moves through the estates and valleys that shaped Indian coffee.
 </p>
 
 </section>
@@ -419,22 +454,22 @@ Our journey begins in Karnataka, with many more origins waiting ahead.
 
 <div class="card">
 <h3>Trail 02</h3>
-<p>Future Origin</p>
+<p>Chikkamagaluru</p>
 </div>
 
 <div class="card">
 <h3>Trail 03</h3>
-<p>Future Origin</p>
+<p>Araku Valley</p>
 </div>
 
 <div class="card">
 <h3>Trail 04</h3>
-<p>Future Origin</p>
+<p>Wayanad</p>
 </div>
 
 <div class="card">
 <h3>Trail 05</h3>
-<p>Future Origin</p>
+<p>Bababudangiri</p>
 </div>
 
 </div>
