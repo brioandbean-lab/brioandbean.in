@@ -18,6 +18,18 @@ function clean(value){
   return String(value || '').trim();
 }
 
+function digitsOnly(value){
+  return clean(value).split('').filter((char) => char >= '0' && char <= '9').join('');
+}
+
+function trimTrailingSlash(value){
+  let current = clean(value);
+  while(current.endsWith('/')){
+    current = current.slice(0, -1);
+  }
+  return current;
+}
+
 function validatePreorder(order){
   const required = ['name', 'phone', 'coffee', 'pack_size', 'grind'];
   for(const field of required){
@@ -26,7 +38,7 @@ function validatePreorder(order){
     }
   }
 
-  if(clean(order.phone).replace(/D/g, '').length < 10){
+  if(digitsOnly(order.phone).length < 10){
     return 'phone is invalid';
   }
 
@@ -86,7 +98,7 @@ module.exports = async function handler(req, res){
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const supabaseUrl = clean(process.env.SUPABASE_URL).replace(//$/, '');
+  const supabaseUrl = trimTrailingSlash(process.env.SUPABASE_URL);
   const serviceRoleKey = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   if(!supabaseUrl || !serviceRoleKey){
