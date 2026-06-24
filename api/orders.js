@@ -9,6 +9,7 @@ function setCorsHeaders(req, res){
   if(allowedOrigins.has(origin)){
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
+
   res.setHeader('Vary', 'Origin');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Admin-Key');
@@ -16,6 +17,10 @@ function setCorsHeaders(req, res){
 
 function clean(value){
   return String(value || '').trim();
+}
+
+function normalizeSupabaseUrl(value){
+  return clean(value).replace(/\/rest\/v1\/?$/, '').replace(/\/$/, '');
 }
 
 module.exports = async function handler(req, res){
@@ -31,7 +36,7 @@ module.exports = async function handler(req, res){
 
   const adminKey = clean(process.env.ADMIN_ACCESS_KEY);
   const suppliedKey = clean(req.headers['x-admin-key']);
-  const supabaseUrl = clean(process.env.SUPABASE_URL).replace(//$/, '');
+  const supabaseUrl = normalizeSupabaseUrl(process.env.SUPABASE_URL);
   const serviceRoleKey = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   if(!adminKey || !supabaseUrl || !serviceRoleKey){
