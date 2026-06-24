@@ -626,8 +626,7 @@ Pack: 100g - Explorer's Pack
 Grind: Beans</div>
 
 <div class="order-actions">
-<button class="btn" type="button" id="preorderInstagram">Preorder on Instagram</button>
-<a class="btn secondary" id="emailOrder" href="mailto:team.brioandbean@gmail.com?subject=Brio%20%26%20Bean%20Preorder&amp;body=Hi%20Brio%20%26%20Bean%2C%20I%20would%20like%20to%20pre-order%3A%0A%0AName%3A%20Customer%0APhone%3A%20Not%20provided%0ACoffee%3A%20House%20Blend%0ARoast%3A%20Medium%20Roast%0APack%3A%20100g%20-%20Explorer's%20Pack%0AGrind%3A%20Beans">Email Preorder Copy</a>
+<button class="btn" type="button" id="preorderInstagram">Place Preorder</button>
 </div>
 
 </div>
@@ -824,7 +823,7 @@ setOrderStatus('Preorder saved successfully. We will reach out to you soon.', 's
 preorderInstagram.disabled = false;
 preorderInstagram.textContent = 'Preorder Placed';
 }catch(error){
-setOrderStatus('Sorry, we could not save this preorder. Please try again or use the email option.', 'error');
+setOrderStatus('Sorry, we could not save this preorder. Please try again in a moment.', 'error');
 preorderInstagram.disabled = false;
 preorderInstagram.textContent = 'Place Preorder';
 }
@@ -835,4 +834,4 @@ updateOrderSummary();
 
 
 
-</body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>
+</body></html>
