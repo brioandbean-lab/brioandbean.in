@@ -22,10 +22,13 @@ function digitsOnly(value){
   return clean(value).split('').filter((char) => char >= '0' && char <= '9').join('');
 }
 
-function trimTrailingSlash(value){
+function normalizeSupabaseUrl(value){
   let current = clean(value);
   while(current.endsWith('/')){
     current = current.slice(0, -1);
+  }
+  if(current.endsWith('/rest/v1')){
+    current = current.slice(0, -8);
   }
   return current;
 }
@@ -66,25 +69,31 @@ async function sendPreorderAlert(preorder){
     '<p><strong>Source:</strong> ' + preorder.source + '</p>'
   ].join('');
 
-  const response = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: 'Bearer ' + resendApiKey,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [alertEmail],
-      subject,
-      html
-    })
-  });
+  try{
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + resendApiKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [alertEmail],
+        subject,
+        html
+      })
+    });
 
-  if(!response.ok){
+    if(!response.ok){
+      console.error('Resend preorder alert failed', response.status, await response.text());
+      return { skipped: false, ok: false };
+    }
+
+    return { skipped: false, ok: true };
+  }catch(error){
+    console.error('Resend preorder alert errored', error.message);
     return { skipped: false, ok: false };
   }
-
-  return { skipped: false, ok: true };
 }
 
 module.exports = async function handler(req, res){
@@ -98,7 +107,7 @@ module.exports = async function handler(req, res){
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const supabaseUrl = trimTrailingSlash(process.env.SUPABASE_URL);
+  const supabaseUrl = normalizeSupabaseUrl(process.env.SUPABASE_URL);
   const serviceRoleKey = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   if(!supabaseUrl || !serviceRoleKey){
@@ -134,6 +143,7 @@ module.exports = async function handler(req, res){
   });
 
   if(!response.ok){
+    console.error('Supabase preorder insert failed', response.status, await response.text());
     return res.status(502).json({ error: 'Could not save preorder' });
   }
 
